@@ -15,7 +15,7 @@ public class Board {
 	/**
 	 * Board of game
 	 */
-	private Pawn[][] board;
+	private Square[][] board;
 	
 
 	/**
@@ -34,7 +34,7 @@ public class Board {
 		if(y < 0 || y > 6)
 			return false;
 		try {
-			board[x][y] = p;
+			board[x][y].adjPown(p);
 			return true;
 		}
 		catch(Exception e) {
