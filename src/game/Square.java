@@ -19,7 +19,7 @@ public class Square {
 	}
 
 	/**
-	 * Adding pawn on board
+	 * Adding pawn on square
 	 * 
 	 * @param p
 	 * @return boolean
