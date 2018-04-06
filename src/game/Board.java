@@ -5,6 +5,7 @@ package game;
 
 import pawn.Pawn;
 
+
 /**
  * @author Adrien
  */
@@ -53,6 +54,7 @@ public class Board {
 		board[4][4] = new Square(5);
 		board[4][5] = new Square(5);
 	}
+	
 
 	/**
 	 * Adding pawn on board
