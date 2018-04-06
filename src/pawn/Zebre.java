@@ -7,6 +7,6 @@ package pawn;
  * @author Adrien
  *
  */
-public class Zèbre extends Pawn{
+public class Zebre extends Pawn{
 
 }
