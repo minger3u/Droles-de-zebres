@@ -3,26 +3,25 @@
  */
 package game;
 
-import pawn.Pawn;
+import java.util.ArrayList;
 
+import pawn.Pawn;
 
 /**
  * @author Adrien
+ *
  */
 public class Board {
-	
+
+
 	/**
 	 * Board of game
 	 */
 	private Square[][] board;
-	
-	
-	/**
-	 * Initialization of all the square
-	 */
+
 	public Board() {
 		this.board = new Square[5][6];
-		
+
 		board[0][0] = new Square(0);
 		board[0][1] = new Square(2);
 		board[0][2] = new Square(3);
@@ -54,10 +53,9 @@ public class Board {
 		board[4][4] = new Square(5);
 		board[4][5] = new Square(5);
 	}
-	
 
 	/**
-	 * Adding pawn on board
+	 * Adding pawn 
 	 * 
 	 * @param x Vertical position
 	 * @param y Horizontal position
@@ -66,14 +64,94 @@ public class Board {
 	 * @return result
 	 */
 	public boolean adjPown(int x, int y, Pawn p) {
-		
-		// Coordinate normalization
-		if(x < 0 || x > 5)
+
+		if(x < 0 || x > 6)
 			return false;
-		if(y < 0 || y > 6)
+		if(y < 0 || y > 5)
 			return false;
-		
-		// adding the pawn
-		return board[x][y].adjPown(p);
+		if(board[x][y].getPawn() != null){
+			return false;
+		}
+		/*
+		 * We check out this square's neighbor
+		 */
+		ArrayList<Square> voisins = voisins(x,y);
+		try {
+			switch(p.toString()){
+			case "Gazelle":
+				/*
+				 * If one of the neighbor is a lion, this token hides
+				 */
+				for(int i=0;i<voisins.size();i++){
+					if(voisins.get(i).getPawn().toString()=="Lion"){
+						p.seCache();
+					}
+				}
+				break;
+			case "Lion":
+				for(int i=0;i<voisins.size();i++){
+					if(voisins.get(i).getPawn().toString()=="Zebre"){
+						voisins.get(i).getPawn().seCache();
+					}
+					
+					if(voisins.get(i).getPawn().toString()=="Gazelle"){
+						voisins.get(i).getPawn().fuite();
+					}
+				}
+				
+				break;
+				
+			case "Crocodile":
+				
+				break;
+				
+			case "Zebre":
+				for(int i=0;i<voisins.size();i++){
+					if(voisins.get(i).getPawn().toString()=="Lion"){
+						p.seCache();
+					}
+				}
+				break;
+				
+			case "Elephant":
+				break;
+			}
+			
+			
+			board[x][y].adjPown(p);
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
+	}
+
+	public ArrayList<Square> voisins(int x, int y){
+		ArrayList<Square> tmp = new ArrayList<Square>();
+		switch(x){
+		case 0:
+			tmp.add(board[x+1][y]);
+			break;
+		case 6:
+			tmp.add(board[x-1][y]);
+			break;
+		default:
+			tmp.add(board[x-1][y]);
+			tmp.add(board[x+1][y]);
+		}
+
+		switch(y){
+		case 0:
+			tmp.add(board[x][y+1]);
+			break;
+		case 5:
+			tmp.add(board[x][y-1]);
+			break;
+		default:
+			tmp.add(board[x][y-1]);
+			tmp.add(board[x][y+1]);
+		}
+
+		return tmp;
 	}
 }
