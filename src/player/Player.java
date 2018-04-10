@@ -37,6 +37,5 @@ public class Player {
 	
 		pawnBox.add(new Crocodile(couleur));
 		pawnBox.add(new Crocodile(couleur));
-		
 	}
 }

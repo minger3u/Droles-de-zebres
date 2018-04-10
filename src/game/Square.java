@@ -17,6 +17,10 @@ public class Square {
 	public Pawn getPawn(){
 		return this.pawn;
 	}
+	
+	public int getSector(){
+		return this.sector;
+	}
 
 	public Square(int sector){
 		this.sector = sector;
@@ -24,5 +28,11 @@ public class Square {
 	
 	public void adjPown(Pawn p) {
 		this.pawn = p;
+	}
+	
+	public void echanger(Square s){
+		Pawn tmp = this.pawn;
+		this.pawn = s.pawn;
+		s.pawn = tmp;
 	}
 }

@@ -19,6 +19,7 @@ public abstract class Pawn {
 	
 	public void seCache(){
 		this.visible = false;
+		this.valeur = 0;
 	}
 	
 	public void fuite(){
