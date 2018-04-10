@@ -5,7 +5,6 @@ package game;
 
 import pawn.Pawn;
 
-
 /**
  * @author Adrien
  *
@@ -13,25 +12,17 @@ import pawn.Pawn;
 public class Square {
 	
 	private int sector;
-	private Pawn pawn;
+	private Pawn pawn = null;
+	
+	public Pawn getPawn(){
+		return this.pawn;
+	}
 
-	public Square(int sector) {
+	public Square(int sector){
 		this.sector = sector;
 	}
-
-	/**
-	 * Adding pawn on square
-	 * 
-	 * @param p
-	 * @return boolean
-	 */
-	public boolean adjPown(Pawn p) {
-		if(this.pawn == null) {
-			this.pawn = p;
-			return true;
-		}else {
-			return false;
-		}
+	
+	public void adjPown(Pawn p) {
+		this.pawn = p;
 	}
-
 }
